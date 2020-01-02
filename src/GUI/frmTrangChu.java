@@ -21,6 +21,8 @@ import DTO.DTO_LoaiHang;
 import DTO.DTO_NhaCungCap;
 import DTO.DTO_NhanVien;
 import DTO.DTO_PhanQuyen;
+import DTO.DTO_thongkethu;
+import java.awt.Color;
 import java.awt.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,6 +34,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -39,6 +43,11 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -870,6 +879,18 @@ public class frmTrangChu extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jTabbedPaneThongKe = new javax.swing.JTabbedPane();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel55 = new javax.swing.JLabel();
+        jdatemonth = new com.toedter.calendar.JDateChooser();
+        jButton4 = new javax.swing.JButton();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
+        jLabel58 = new javax.swing.JLabel();
+        tftyle = new javax.swing.JTextField();
+        tftongchi = new javax.swing.JTextField();
+        tftongthu = new javax.swing.JTextField();
+        tftongluot = new javax.swing.JTextField();
+        pnchart = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -985,7 +1006,7 @@ public class frmTrangChu extends javax.swing.JFrame {
                 .addGroup(jPanelThongTinChung_PhieuBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel103)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         jLabel104.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
@@ -1269,7 +1290,7 @@ public class frmTrangChu extends javax.swing.JFrame {
                 .addGroup(jPanelThongTinChung_PhieuNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel116)
                     .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         jLabel117.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
@@ -1925,7 +1946,7 @@ public class frmTrangChu extends javax.swing.JFrame {
                             .addComponent(jBtnTatCa_HangHoa)))
                     .addComponent(jLabel36))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1939,7 +1960,7 @@ public class frmTrangChu extends javax.swing.JFrame {
         );
         jPanelHangLayout.setVerticalGroup(
             jPanelHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
+            .addGap(0, 564, Short.MAX_VALUE)
             .addGroup(jPanelHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelDanhSachHangHoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -2511,7 +2532,7 @@ public class frmTrangChu extends javax.swing.JFrame {
                         .addComponent(jBtnTatCa_NCC))
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2883,11 +2904,6 @@ public class frmTrangChu extends javax.swing.JFrame {
                         .addGap(62, 62, 62)
                         .addComponent(jLabel37)))
                 .addGap(660, 660, 660))
-            .addGroup(jPanelThongTinNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelThongTinNhanVienLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jTabbedPaneThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 1203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jPanelThongTinNhanVienLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
@@ -2895,7 +2911,7 @@ public class frmTrangChu extends javax.swing.JFrame {
         jPanelThongTinNhanVienLayout.setVerticalGroup(
             jPanelThongTinNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelThongTinNhanVienLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(655, 655, 655)
                 .addComponent(jLabel37)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelThongTinNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2945,17 +2961,106 @@ public class frmTrangChu extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(152, Short.MAX_VALUE))
-            .addGroup(jPanelThongTinNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelThongTinNhanVienLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jTabbedPaneThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelThongTinNhanVienLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
 
         jTabbedPaneQuanLy.addTab("Tài khoản", jPanelThongTinNhanVien);
+
+        jPanel12.setBackground(new java.awt.Color(153, 255, 255));
+
+        jLabel55.setText("tỷ lệ doanh thu so với tháng trước :");
+
+        jdatemonth.setDateFormatString("MM/yyyy");
+        jdatemonth.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+
+        jButton4.setText("Thống kê");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel56.setText("tổng chi trong tháng :");
+
+        jLabel57.setText("tổng thu trong tháng :");
+
+        jLabel58.setText("tổng lượt bán hàng trong tháng :");
+
+        pnchart.setBackground(new java.awt.Color(204, 255, 204));
+
+        javax.swing.GroupLayout pnchartLayout = new javax.swing.GroupLayout(pnchart);
+        pnchart.setLayout(pnchartLayout);
+        pnchartLayout.setHorizontalGroup(
+            pnchartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 730, Short.MAX_VALUE)
+        );
+        pnchartLayout.setVerticalGroup(
+            pnchartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jdatemonth, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel56)
+                            .addComponent(jLabel57)
+                            .addComponent(jLabel58)
+                            .addComponent(jLabel55))))
+                .addGap(59, 59, 59)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tftongchi, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tftongthu, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tftongluot, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tftyle, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(20, 20, 20)
+                .addComponent(pnchart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jdatemonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jLabel56)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel57)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel58)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel55))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jButton4)
+                .addGap(37, 37, 37)
+                .addComponent(tftongchi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(tftongthu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(tftongluot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(tftyle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(pnchart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jTabbedPaneThongKe.addTab("tab1", jPanel12);
+
+        jTabbedPaneQuanLy.addTab("Thống kê", new javax.swing.ImageIcon(getClass().getResource("/image/thongke-removebg-preview.png")), jTabbedPaneThongKe); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -2965,7 +3070,7 @@ public class frmTrangChu extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
+            .addComponent(jTabbedPaneQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -3467,6 +3572,22 @@ public class frmTrangChu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblKhachHangsMouseClicked
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Calendar calendar = Calendar.getInstance();
+        calendar = jdatemonth.getCalendar();
+        if(jdatemonth.getDate() != null)    
+        {
+            tftongchi.setText((new BLL.BLL_thongke().tongchi(calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.YEAR)))+" VND");
+            tftongthu.setText((new BLL.BLL_thongke().tongthu(calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.YEAR)))+" VND");
+            tftongluot.setText((new BLL.BLL_thongke().tongluot(calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.YEAR)))+" Lượt");
+            tftyle.setText((new BLL.BLL_thongke().doanhthutang(calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.YEAR))));
+            makechart();
+            //pnchart.setFocusable(true);
+            pnchart.revalidate();
+            pnchart.repaint();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -3692,7 +3813,35 @@ public class frmTrangChu extends javax.swing.JFrame {
             } 
     }
     // End KhachHang
-    
+   void makechart()
+    {
+        pnchart.removeAll();
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar = jdatemonth.getCalendar();
+        List<DTO_thongkethu> list = new BLL.BLL_thongke().danhsachhoadon(calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.YEAR));
+        int daysQty = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);        
+        DefaultCategoryDataset dcd = new DefaultCategoryDataset();
+               for(int i = 1;i <= daysQty;i++)
+        {              
+            dcd.addValue(0,"",""+i);                      
+        }   
+       for(int j = 0;j < list.size();j++)
+       {
+           dcd.addValue(list.get(j).getdoanhthu(),"",""+list.get(j).getngay());
+       }
+
+        
+        JFreeChart jchart =ChartFactory.createBarChart("THỐNG KÊ DOANH THU","Doanh thu mỗi ngày","số tiền(VND)", dcd);
+        CategoryPlot plot = jchart.getCategoryPlot();
+        plot.setRangeGridlinePaint(Color.yellow);
+        //ChartFrame chart = new ChartFrame("titleframe",jchart,true);
+        //chart.setVisible(true);
+        //chart.setSize(500,500);
+        ChartPanel chartpane = new ChartPanel(jchart);
+
+        pnchart.add(chartpane);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuyKhachHang;
@@ -3731,6 +3880,7 @@ public class frmTrangChu extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jCBBDonViTinh_HangHoa;
     private javax.swing.JComboBox<String> jCBBGioiTinh_NV;
     private javax.swing.JComboBox<String> jCBBNhomHang_HangHoa;
@@ -3823,6 +3973,10 @@ public class frmTrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -3833,6 +3987,7 @@ public class frmTrangChu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -3934,7 +4089,13 @@ public class frmTrangChu extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private com.toedter.calendar.JDateChooser jdatemonth;
+    private javax.swing.JPanel pnchart;
     private javax.swing.JTable tblKhachHangs;
+    private javax.swing.JTextField tftongchi;
+    private javax.swing.JTextField tftongluot;
+    private javax.swing.JTextField tftongthu;
+    private javax.swing.JTextField tftyle;
     private javax.swing.JTextArea txtDiaChi;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMaKhachHang;
